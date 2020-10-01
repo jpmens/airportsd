@@ -1,0 +1,5 @@
+config.mk
+*.pyc
+*.o
+airportsd
+env.v3
