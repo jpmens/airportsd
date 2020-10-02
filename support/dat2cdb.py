@@ -18,6 +18,7 @@ with open('airports.dat', 'r') as f:
                 "city"   : city,
                 "lat"    : lat,
                 "lon"    : lon,
+                "name"   : name,
             }
             print("{iata} {data}".format(iata=iata.upper(), data=json.dumps(data)))
         
