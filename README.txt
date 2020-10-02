@@ -80,10 +80,10 @@ REQUIREMENTS
        · tinycdb (http://www.corpit.ru/mjt/tinycdb.html)
 
 CREDITS
-       · Airport    data,    downloaded    on	  2020‐10‐01	 from	  here
-	 (https://github.com/jpatokal/openflights/blob/master/data/air‐
-	 ports.dat?raw=true), and  originally  gratefully  provided  by  open‐
-	 flights.org (https://openflights.org/data.html).
+       · Airport  data,  downloaded  on  2020‐10‐01   (https://github.com/jpa‐
+	 tokal/openflights/blob/master/data/airports.dat?raw=true), and origi‐
+	 nally	 gratefully   provided	 by   openflights.org	(https://open‐
+	 flights.org/data.html).
 
 AVAILABILITY
        <https://github.com/jpmens/airportsd>
