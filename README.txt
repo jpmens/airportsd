@@ -27,7 +27,8 @@ EXAMPLE
 		"cc": "Spain",
 		"city": "Barcelona",
 		"lat": "41.2971",
-		"lon": "2.07846"
+		"lon": "2.07846",
+		"name": "Barcelona International Airport"
 	      }
 
 ENDPOINTS
