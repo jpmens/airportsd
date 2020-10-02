@@ -40,6 +40,7 @@
 
 struct MHD_Daemon *mhdaemon;
 struct cdb cdb;
+bool tty = false;
 
 static void catcher(int sig)
 {
@@ -105,7 +106,9 @@ static int get_lookup(struct MHD_Connection *connection)
 		*kp = ( islower(*kp) ? toupper(*kp) : *kp );
 	}
 
-	fprintf(stderr, "Lookup: [%s]\n", key);
+	if (tty) {
+		fprintf(stderr, "Lookup: [%s]\n", key);
+	}
 
 	if (cdb_find(&cdb, key, keylen) > 0) {
 		datalen = cdb_datalen(&cdb);
@@ -136,9 +139,11 @@ int handle_connection(void *cls, struct MHD_Connection *connection,
 int main(int argc, char **argv)
 {
 	struct sockaddr_in sad;
-	char *s_ip, *s_port;
+	char *s_ip, *s_port, *progname = *argv;
 	unsigned short port;
 	int ch, fd;
+
+	tty = isatty(0);
 
 	if ((s_ip = getenv("AIRPORTSD_IP")) == NULL)
 		s_ip = LISTEN_HOST;
@@ -152,7 +157,7 @@ int main(int argc, char **argv)
 				printf("airportsd %s\n", VERSION);
 				exit(0);
 			default:
-				fprintf(stderr, "Usage: %s [-v]\n", *argv);
+				fprintf(stderr, "Usage: %s [-v]\n", progname);
 				exit(2);
 		}
 	}
@@ -160,6 +165,9 @@ int main(int argc, char **argv)
 	argc -= optind;
 	argv += optind;
 
+	if (tty) {
+		fprintf(stderr, "%s: listening on %s:%d, db=%s\n", progname, s_ip, port, DBNAME);
+	}
 
 	memset(&sad, 0, sizeof (struct sockaddr_in));
 	sad.sin_family = AF_INET;

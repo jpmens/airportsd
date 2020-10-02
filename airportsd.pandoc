@@ -9,7 +9,7 @@ airportsd [-v]
 
 # DESCRIPTION
 
-*airportsd* is an IATA airport code lookup daemon thing, accessible via HTTP. 
+*airportsd* is an IATA airport code lookup daemon thing, accessible via HTTP. When running on a _tty_ the program will output brief debugging information.
 
 The (curently hardcoded) _CDB_ database must exist and be readable by the owner of the *airportsd* process.
 
