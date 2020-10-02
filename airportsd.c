@@ -44,8 +44,6 @@
 # define NOT_ACCEPTABLE MHD_HTTP_METHOD_NOT_ACCEPTABLE
 #endif
 
-#define DB "airports.cdb"
-
 struct MHD_Daemon *mhdaemon;
 struct cdb cdb;
 
@@ -175,8 +173,8 @@ int main(int argc, char **argv)
 	}
 
 
-	if ((fd = open(DB, O_RDONLY)) == -1) {
-		perror(DB);
+	if ((fd = open(DBNAME, O_RDONLY)) == -1) {
+		perror(DBNAME);
 		exit(3);
 	}
 	cdb_init(&cdb, fd);
