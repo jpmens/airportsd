@@ -20,7 +20,7 @@ airportsd: airportsd.c Makefile version.h config.mk
 # in the CDB is a JSON object
 
 airports.cdb: airports.dat
-	./dat2cdb.py | cdb -c -m -p 0444 airports.cdb
+	support/dat2cdb.py | cdb -c -m -p 0444 airports.cdb
 
 clean:
 	rm -f *.o
