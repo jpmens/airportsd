@@ -40,8 +40,11 @@ install: airportsd airports.cdb
 	chmod 755 $(DESTDIR)$(INSTALLDIR)/share/man/man8
 	install -m 644 airportsd.8 $(DESTDIR)$(INSTALLDIR)/share/man/man8/airportsd.8
 
-docs: airportsd.8 README.md
+docs: airportsd.8 README.txt
 
 airportsd.8: airportsd.pandoc Makefile
 	pandoc -s -f markdown -o $@ $<
+
+README.txt: airportsd.8
+	nroff -man airportsd.8 | col -b > README.txt
 
