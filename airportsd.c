@@ -38,12 +38,6 @@
 #include <microhttpd.h>
 #include "version.h"
 
-#ifdef MHD_HTTP_NOT_ACCEPTABLE
-# define NOT_ACCEPTABLE MHD_HTTP_NOT_ACCEPTABLE
-#else
-# define NOT_ACCEPTABLE MHD_HTTP_METHOD_NOT_ACCEPTABLE
-#endif
-
 struct MHD_Daemon *mhdaemon;
 struct cdb cdb;
 
@@ -95,24 +89,25 @@ static int send_page(struct MHD_Connection *conn, const char *page, int status_c
 static int get_lookup(struct MHD_Connection *connection)
 {
 	const char *iata;
-	char key[127], data[8192], *ap, *bp;
-	unsigned keylen, datalen;
+	char *key, *kp, data[8192];
+	unsigned keylen = 0, datalen;
 
 	iata = MHD_lookup_connection_value(connection, MHD_GET_ARGUMENT_KIND, "iata");
 	if (!iata || !*iata) {
 		return send_page(connection, "Missing iata", 422);
 	}
 
-	for (ap = (char *)iata, bp = key; ap && *ap; ap++, bp++) {
-		*bp = ( islower(*ap) ? toupper(*ap) : *ap );
-		
+	if (!(key = strdup(iata))) {
+		return send_page(connection, "out of memory", 422);
 	}
-	*bp = 0;
 
-	keylen = strlen(key);
+	for (kp = key; kp && *kp; keylen++, kp++) {
+		*kp = ( islower(*kp) ? toupper(*kp) : *kp );
+	}
+
 	if (cdb_find(&cdb, key, keylen) > 0) {
 		datalen = cdb_datalen(&cdb);
-		datalen = (datalen >= sizeof(data)) ? sizeof(data) : datalen;	// cap
+		datalen = (datalen >= sizeof(data)) ? sizeof(data) : datalen;	/* cap */
 		cdb_read(&cdb, data, datalen, cdb_datapos(&cdb));
 		data[datalen] = 0;
 
