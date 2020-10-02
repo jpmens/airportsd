@@ -6,15 +6,18 @@ LDFLAGS=-lmicrohttpd -lcdb $(LIBS)
 
 INSTALLDIR = /usr/local
 
+CFLAGS += -DDBNAME=\"$(DBNAME)\"
 CFLAGS += -DLISTEN_HOST=\"$(LISTEN_HOST)\"
 CFLAGS += -DLISTEN_PORT=\"$(LISTEN_PORT)\"
 
-OBJS = 
+all: airportsd docs
 
-all: airportsd
+airportsd: airportsd.c Makefile version.h config.mk
+	$(CC) $(CFLAGS) -o airportsd airportsd.c $(LDFLAGS)
 
-airportsd: airportsd.c $(OBJS) Makefile version.h config.mk
-	$(CC) $(CFLAGS) -o airportsd airportsd.c $(OBJS) $(LDFLAGS)
+# Use dat2cdb.py to convert the CSV into input for a CDB file keyed on
+# uppercase 3-letter IATA code (e.g. BCN for Barcelona). The payload
+# in the CDB is a JSON object
 
 airports.cdb: airports.dat
 	./dat2cdb.py | cdb -c -m -p 0444 airports.cdb
@@ -26,22 +29,19 @@ clobber: clean
 	rm -f airportsd
 
 install: airportsd airports.cdb
-	[ -d $(DESTDIR)$(INSTALLDIR)/bin ] || ( mkdir -p $(DESTDIR)$(INSTALLDIR)/bin; chmod 755 $(DESTDIR)$(INSTALLDIR)/bin )
 	[ -d $(DESTDIR)$(INSTALLDIR)/sbin ] || ( mkdir -p $(DESTDIR)$(INSTALLDIR)/sbin; chmod 755 $(DESTDIR)$(INSTALLDIR)/sbin )
-	mkdir -p $(DESTDIR)/var/local/airports
-	chmod 755 $(DESTDIR)/var/local/airports
-	mkdir -p $(DESTDIR)$(INSTALLDIR)/share/man/man1 $(DESTDIR)$(INSTALLDIR)/share/man/man8
-	chmod 755 $(DESTDIR)$(INSTALLDIR)/share/man/man1 $(DESTDIR)$(INSTALLDIR)/share/man/man8
 	install -m 755 airportsd $(DESTDIR)$(INSTALLDIR)/sbin/airportsd
 
-	install -m 644 revgeod.1 $(DESTDIR)$(INSTALLDIR)/share/man/man8/revgeod.1
+	mkdir -p $$(dirname $(DBNAME) )
+	chmod 755 $$(dirname $(DBNAME) )
+	install -m 444 airports.cdb $(DBNAME)
+
+	mkdir -p $(DESTDIR)$(INSTALLDIR)/share/man/man8
+	chmod 755 $(DESTDIR)$(INSTALLDIR)/share/man/man8
+	install -m 644 airportsd.8 $(DESTDIR)$(INSTALLDIR)/share/man/man8/airportsd.8
 
 docs: airportsd.8 README.md
 
-airportsd.8: revgeod.pandoc Makefile
-	pandoc -s -w man+simple_tables -o $@ $<
-
-#README.md: revgeod.pandoc Makefile
-#	pandoc -s -w markdown_github+simple_tables $<  > $@
-##	pandoc -s -w markdown+simple_tables $< | sed -n -e '4,$$p' > $@
+airportsd.8: airportsd.pandoc Makefile
+	pandoc -s -f markdown -o $@ $<
 
