@@ -1,0 +1,12 @@
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+      fra: "{{ lookup('airport', 'fra') }}"
+  tasks:
+  - debug:
+        msg: "FRA is {{ fra.name }} in {{ fra.city }}"
+
+  - debug:
+        msg: "Barcelona is at {{ lookup('airport', 'bcn').osm }}"
+

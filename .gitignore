@@ -3,3 +3,4 @@ config.mk
 *.o
 airportsd
 env.v3
+__pycache__
