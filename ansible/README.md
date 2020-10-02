@@ -1,5 +1,10 @@
 # Ansible lookup plugin airport.py
 
+
+```console
+$ export ANSIBLE_LOOKUP_PLUGINS=/path/to/this/directory/
+```
+
 ```
 PLAY [localhost] ********************************************************************
 
