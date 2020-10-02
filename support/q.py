@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-# simple query utility for airportd
+# Copyright (C) 2020 Jan-Piet Mens <jp@mens.de>
+# q.py: simple query utility for airportd
 
 import sys
 import requests

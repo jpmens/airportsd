@@ -3,6 +3,8 @@ from ansible.plugins.lookup import LookupBase
 from ansible.module_utils.urls import open_url
 import json
 
+# Copyright (C) 2020 Jan-Piet Mens <jp@mens.de>
+
 DOCUMENTATION = """
     lookup: airport
     author: Jan-Piet Mens (@jpmens)

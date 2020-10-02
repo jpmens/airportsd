@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
-# Jan-Piet Mens, October 2020
-
-# read airports.dat CSV and produce key_JSON for passing to cdb(1)
+# Copyright (C) 2020 Jan-Piet Mens <jp@mens.de>
+# dat2cdb.py: read airports.dat CSV and produce key_JSON for passing to cdb(1)
 
 import csv
 import json
