@@ -66,10 +66,10 @@ optionally sets the TCP listen port to something other than the default
 .IP
 .nf
 \f[C]
-$ pkg install libmicrohttpd
-$ pkg install tinycdb
+$ pkg install libmicrohttpd tinycdb
 
 $ cat > config.mk <<EOF
+DBNAME= \[dq]/usr/local/share/airports.cdb\[dq]
 LISTEN_HOST=   \[dq]127.0.0.1\[dq]
 LISTEN_PORT=   \[dq]8812\[dq]
 INC =           -I/usr/local/include

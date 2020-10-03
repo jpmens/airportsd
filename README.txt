@@ -57,10 +57,10 @@ ENVIRONMENT
 
 REQUIREMENTS
    freebsd
-	      $ pkg install libmicrohttpd
-	      $ pkg install tinycdb
+	      $ pkg install libmicrohttpd tinycdb
 
 	      $ cat > config.mk <<EOF
+	      DBNAME= "/usr/local/share/airports.cdb"
 	      LISTEN_HOST=   "127.0.0.1"
 	      LISTEN_PORT=   "8812"
 	      INC =	      ‐I/usr/local/include
