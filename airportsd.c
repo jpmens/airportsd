@@ -113,11 +113,14 @@ static int get_lookup(struct MHD_Connection *connection)
 	if (cdb_find(&cdb, key, keylen) > 0) {
 		datalen = cdb_datalen(&cdb);
 		datalen = (datalen >= sizeof(data)) ? sizeof(data) : datalen;	/* cap */
-		cdb_read(&cdb, data, datalen, cdb_datapos(&cdb));
-		data[datalen] = 0;
+		if (cdb_read(&cdb, data, datalen, cdb_datapos(&cdb)) == 0) {
+			data[datalen] = 0;
 
-		return send_content(connection, data, "application/json", MHD_HTTP_OK);
+			free(key);
+			return send_content(connection, data, "application/json", MHD_HTTP_OK);
+		}
 	}
+	free(key);
 	return send_page(connection, "not found", 404);
 }
 
@@ -182,7 +185,10 @@ int main(int argc, char **argv)
 		perror(DBNAME);
 		exit(3);
 	}
-	cdb_init(&cdb, fd);
+	if (cdb_init(&cdb, fd) < 0) {
+		fprintf(stderr, "Cannot cdb_init\n");
+		exit(3);
+	}
 
 	ignore_sigpipe();
 	signal(SIGINT, catcher);
