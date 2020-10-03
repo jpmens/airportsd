@@ -40,7 +40,7 @@ class LookupModule(LookupBase):
     def run(self, terms, variables, **kwargs):
         ret = []
         for term in terms:
-            url = "http://127.0.0.1:8812/lookup?iata={iata}".format(iata=term)
+            url = "http://127.0.0.1:8812/lookup?iata={0}".format(term)
             try:
                 response = open_url(url)
             except Exception as e:
@@ -49,7 +49,7 @@ class LookupModule(LookupBase):
             data = json.loads(response.read())
 
             if 'lat' in data and 'lon' in data:
-                data['osm'] = "https://openstreetmap.org/?mlat={lat}&mlon={lon}&zoom=12".format(lat=data['lat'], lon=data['lon'])
+                data['osm'] = "https://openstreetmap.org/?mlat={0}&mlon={1}&zoom=12".format(data['lat'], data['lon'])
 
             ret.append(data)
 
