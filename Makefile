@@ -28,7 +28,7 @@ clean:
 clobber: clean
 	rm -f airportsd
 
-install: airportsd airports.cdb
+install: airportsd # airports.cdb
 	[ -d $(DESTDIR)$(INSTALLDIR)/sbin ] || ( mkdir -p $(DESTDIR)$(INSTALLDIR)/sbin; chmod 755 $(DESTDIR)$(INSTALLDIR)/sbin )
 	install -m 755 airportsd $(DESTDIR)$(INSTALLDIR)/sbin/airportsd
 
