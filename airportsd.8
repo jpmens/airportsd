@@ -10,12 +10,15 @@ airportsd - IATA airport code lookup server
 airportsd [-v]
 .SH DESCRIPTION
 .PP
-\f[I]airportsd\f[R] is an IATA airport code lookup daemon thing,
-accessible via HTTP.
-When running on a \f[I]tty\f[R] the program will output brief debugging
-information.
+\f[I]airportsd\f[R] is an HTTP-accessible IATA airport code lookup
+daemon.
+We created this as a service students can use on lab machines for
+developing an Ansible lookup plugin during course.
 .PP
-The (curently hardcoded) \f[I]CDB\f[R] database must exist and be
+When running on a \f[I]tty\f[R] the program will output brief debugging
+information on startup, and when it\[cq]s queried.
+.PP
+The (currently hard-coded) \f[I]CDB\f[R] database must exist and be
 readable by the owner of the \f[I]airportsd\f[R] process.
 .SH EXAMPLE
 .IP
@@ -61,6 +64,10 @@ anything other than a loopback address.
 \f[B]\f[CB]AIRPORTSD_PORT\f[B]\f[R]
 optionally sets the TCP listen port to something other than the default
 \f[C]8812\f[R].
+.SH FILES
+.TP
+\f[B]\f[CB]/usr/local/share/airports.cdb\f[B]\f[R]
+the database file to query.
 .SH REQUIREMENTS
 .SS freebsd
 .IP

@@ -9,9 +9,11 @@ airportsd [-v]
 
 # DESCRIPTION
 
-*airportsd* is an IATA airport code lookup daemon thing, accessible via HTTP. When running on a _tty_ the program will output brief debugging information.
+*airportsd* is an HTTP-accessible IATA airport code lookup daemon. We created this as a service students can use on lab machines for developing an Ansible lookup plugin during course.
 
-The (curently hardcoded) _CDB_ database must exist and be readable by the owner of the *airportsd* process.
+When running on a _tty_ the program will output brief debugging information on startup, and when it's queried.
+
+The (currently hard-coded) _CDB_ database must exist and be readable by the owner of the *airportsd* process.
 
 # EXAMPLE
 
@@ -55,6 +57,11 @@ This endpoint expects `iata` query parameter with a case insensitive 3-letter IA
 
 `AIRPORTSD_PORT`
 :     optionally sets the TCP listen port to something other than the default `8812`.
+
+# FILES
+
+`/usr/local/share/airports.cdb`
+:     the database file to query.
 
 # REQUIREMENTS
 

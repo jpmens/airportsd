@@ -9,12 +9,15 @@ SYNOPSIS
        airportsd [‐v]
 
 DESCRIPTION
-       airportsd  is  an IATA airport code lookup daemon thing, accessible via
-       HTTP.  When running on a tty the program will  output  brief  debugging
-       information.
+       airportsd  is  an  HTTP‐accessible IATA airport code lookup daemon.  We
+       created this as a service students can use on lab machines for develop‐
+       ing an Ansible lookup plugin during course.
 
-       The (curently hardcoded) CDB database must exist and be readable by the
-       owner of the airportsd process.
+       When  running on a tty the program will output brief debugging informa‐
+       tion on startup, and when it’s queried.
+
+       The (currently hard‐coded) CDB database must exist and be  readable  by
+       the owner of the airportsd process.
 
 EXAMPLE
 	      $ curl ‐i http://127.0.0.1:8812/lookup?iata=bcn
@@ -36,8 +39,8 @@ ENDPOINTS
        All airportsd API endpoints are obtained via GET requests.
 
    lookup
-       This endpoint expects iata query  parameter  with  a  case  insensitive
-       3‐letter  IATA  airport	code; the key is looked up in the database and
+       This  endpoint  expects	iata  query  parameter with a case insensitive
+       3‐letter IATA airport code; the key is looked up in  the  database  and
        the JSON data or HTTP status code 404 are returned.
 
 OPTIONS
@@ -47,13 +50,17 @@ OPTIONS
 
 ENVIRONMENT
        AIRPORTSD_IP
-	      optionally sets the listen address for  airportsd;  defaults  to
-	      127.0.0.1  and we strongly recommend this is not changed to any‐
+	      optionally  sets	the  listen address for airportsd; defaults to
+	      127.0.0.1 and we strongly recommend this is not changed to  any‐
 	      thing other than a loopback address.
 
        AIRPORTSD_PORT
-	      optionally sets the TCP listen port to something other than  the
+	      optionally  sets the TCP listen port to something other than the
 	      default 8812.
+
+FILES
+       /usr/local/share/airports.cdb
+	      the database file to query.
 
 REQUIREMENTS
    freebsd
@@ -82,7 +89,7 @@ REQUIREMENTS
        · tinycdb (http://www.corpit.ru/mjt/tinycdb.html)
 
 CREDITS
-       · Airport   data,  downloaded  on  2020‐10‐01  (https://github.com/jpa‐
+       · Airport  data,  downloaded  on  2020‐10‐01   (https://github.com/jpa‐
 	 tokal/openflights/blob/master/data/airports.dat?raw=true), and origi‐
 	 nally	 gratefully   provided	 by   openflights.org	(https://open‐
 	 flights.org/data.html).
