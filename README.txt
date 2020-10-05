@@ -23,16 +23,18 @@ EXAMPLE
 	      $ curl ‐i http://127.0.0.1:8812/lookup?iata=bcn
 	      HTTP/1.1 200 OK
 	      Connection: Keep‐Alive
-	      Content‐Length: 87
+	      Content‐Length: 166
 	      Content‐Type: application/json
 	      Date: Fri, 02 Oct 2020 09:49:30 GMT
 	      {
+		"id": "4004",
 		"iata": "BCN",
-		"cc": "Spain",
+		"cc": "ES",
 		"city": "Barcelona",
 		"lat": "41.2971",
 		"lon": "2.07846",
-		"name": "Barcelona International Airport"
+		"name": "Barcelona International Airport",
+		"type": "large_airport"
 	      }
 
 ENDPOINTS
@@ -89,10 +91,8 @@ REQUIREMENTS
        · tinycdb (http://www.corpit.ru/mjt/tinycdb.html)
 
 CREDITS
-       · Airport  data,  downloaded  on  2020‐10‐01   (https://github.com/jpa‐
-	 tokal/openflights/blob/master/data/airports.dat?raw=true), and origi‐
-	 nally	 gratefully   provided	 by   openflights.org	(https://open‐
-	 flights.org/data.html).
+       · Airport data gratefully put into the Public Domain by ourairports.com
+	 (https://ourairports.com/data/).
 
 AVAILABILITY
        <https://github.com/jpmens/airportsd>

@@ -27,16 +27,18 @@ readable by the owner of the \f[I]airportsd\f[R] process.
 $ curl -i http://127.0.0.1:8812/lookup?iata=bcn
 HTTP/1.1 200 OK
 Connection: Keep-Alive
-Content-Length: 87
+Content-Length: 166
 Content-Type: application/json
 Date: Fri, 02 Oct 2020 09:49:30 GMT
 {
+  \[dq]id\[dq]: \[dq]4004\[dq],
   \[dq]iata\[dq]: \[dq]BCN\[dq],
-  \[dq]cc\[dq]: \[dq]Spain\[dq],
+  \[dq]cc\[dq]: \[dq]ES\[dq],
   \[dq]city\[dq]: \[dq]Barcelona\[dq],
   \[dq]lat\[dq]: \[dq]41.2971\[dq],
   \[dq]lon\[dq]: \[dq]2.07846\[dq],
-  \[dq]name\[dq]: \[dq]Barcelona International Airport\[dq]
+  \[dq]name\[dq]: \[dq]Barcelona International Airport\[dq],
+  \[dq]type\[dq]: \[dq]large_airport\[dq]
 }
 \f[R]
 .fi
@@ -112,10 +114,8 @@ libmicrohttpd (https://www.gnu.org/software/libmicrohttpd/)
 tinycdb (http://www.corpit.ru/mjt/tinycdb.html)
 .SH CREDITS
 .IP \[bu] 2
-Airport data, downloaded on
-2020-10-01 (https://github.com/jpatokal/openflights/blob/master/data/airports.dat?raw=true),
-and originally gratefully provided by
-openflights.org (https://openflights.org/data.html).
+Airport data gratefully put into the Public Domain by
+ourairports.com (https://ourairports.com/data/).
 .SH AVAILABILITY
 .PP
 <https://github.com/jpmens/airportsd>

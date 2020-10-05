@@ -20,17 +20,20 @@ The (currently hard-coded) _CDB_ database must exist and be readable by the owne
 	$ curl -i http://127.0.0.1:8812/lookup?iata=bcn
 	HTTP/1.1 200 OK
 	Connection: Keep-Alive
-	Content-Length: 87
+	Content-Length: 166
 	Content-Type: application/json
 	Date: Fri, 02 Oct 2020 09:49:30 GMT
 	{
+	  "id": "4004",
 	  "iata": "BCN",
-	  "cc": "Spain",
+	  "cc": "ES",
 	  "city": "Barcelona",
 	  "lat": "41.2971",
 	  "lon": "2.07846",
-	  "name": "Barcelona International Airport"
+	  "name": "Barcelona International Airport",
+	  "type": "large_airport"
 	}
+
 
 # ENDPOINTS
 
@@ -105,7 +108,7 @@ brew install libmicrohttpd tinycdb
 
 # CREDITS
 
-* Airport data, [downloaded on 2020-10-01](https://github.com/jpatokal/openflights/blob/master/data/airports.dat?raw=true), and originally gratefully provided by [openflights.org](https://openflights.org/data.html).
+* Airport data gratefully put into the Public Domain by [ourairports.com](https://ourairports.com/data/).
 
 
 # AVAILABILITY

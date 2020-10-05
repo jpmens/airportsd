@@ -10,7 +10,7 @@ PLAY [localhost] ***************************************************************
 
 TASK [debug] ************************************************************************
 ok: [localhost] => {
-    "msg": "FRA is Frankfurt am Main Airport in Frankfurt"
+    "msg": "FRA is Frankfurt am Main Airport in Frankfurt am Main"
 }
 
 TASK [debug] ************************************************************************
@@ -21,8 +21,8 @@ ok: [localhost] => {
 TASK [debug] ************************************************************************
 ok: [localhost] => {
     "fra": {
-        "cc": "Germany",
-        "city": "Frankfurt",
+        "cc": "DE",
+        "city": "Frankfurt am Main",
         "iata": "FRA",
         "lat": "50.033333",
         "lon": "8.570556",

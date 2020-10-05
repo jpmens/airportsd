@@ -19,8 +19,8 @@ airportsd: airportsd.c Makefile version.h config.mk
 # uppercase 3-letter IATA code (e.g. BCN for Barcelona). The payload
 # in the CDB is a JSON object
 
-airports.cdb: airports.dat support/dat2cdb.py
-	support/dat2cdb.py | cdb -c -m -p 0444 airports.cdb
+airports.cdb: airports.csv support/our2cdb.py
+	support/our2cdb.py | cdb -c -m -p 0444 airports.cdb
 
 clean:
 	rm -f *.o
