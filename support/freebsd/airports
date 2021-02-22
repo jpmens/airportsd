@@ -1,0 +1,47 @@
+#!/bin/sh
+
+# PROVIDE: airportsd
+# REQUIRE: LOGIN DAEMON NETWORKING
+# KEYWORD: airports ansible
+
+# Enable this script by adding:
+# airports_enable="YES"
+# ... to /etc/rc.conf
+# or run
+# ... service airports enable
+
+. /etc/rc.subr
+
+name="airports"
+rcvar="airports_enable"
+
+command="/usr/local/sbin/airportsd";
+pidfile="/var/run/${name}.pid"
+
+start_cmd="airport_start"
+stop_cmd="airport_stop"
+status_cmd="airport_status"
+
+airport_start() {
+        /usr/sbin/daemon -p ${pidfile} ${command}
+}
+
+airport_status() {
+        if [ -e ${pidfile} ]; then
+                echo ${name} is running...
+        else
+                echo ${name} is not running.
+        fi
+}
+
+airport_stop() {
+        if [ -e ${pidfile} ]; then
+                kill `cat ${pidfile}`;
+        else
+                echo ${name} is not running?
+        fi
+}
+
+load_rc_config $name
+run_rc_command "$1"
+
