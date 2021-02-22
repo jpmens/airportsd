@@ -11,7 +11,7 @@ SYNOPSIS
 DESCRIPTION
        airportsd  is  an  HTTP‐accessible IATA airport code lookup daemon.  We
        created this as a service students can use on lab machines for develop‐
-       ing an Ansible lookup plugin during course.
+       ing an Ansible lookup plugin during trainings.
 
        When  running on a tty the program will output brief debugging informa‐
        tion on startup, and when it’s queried.
