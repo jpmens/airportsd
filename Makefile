@@ -1,7 +1,7 @@
 
 include config.mk
 
-CFLAGS= -Wall -Werror $(INC)
+CFLAGS=$(INC)
 LDFLAGS=-lmicrohttpd -lcdb $(LIBS)
 
 INSTALLDIR = /usr/local
