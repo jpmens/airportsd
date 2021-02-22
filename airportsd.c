@@ -124,7 +124,7 @@ static int get_lookup(struct MHD_Connection *connection)
 	return send_page(connection, "not found", 404);
 }
 
-int handle_connection(void *cls, struct MHD_Connection *connection,
+enum MHD_Result handle_connection(void *cls, struct MHD_Connection *connection,
 	const char *url, const char *method, const char *version,
 	const char *upload_data, size_t *upload_data_size, void **con_cls)
 {
