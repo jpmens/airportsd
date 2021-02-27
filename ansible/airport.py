@@ -1,5 +1,6 @@
 from ansible.errors import AnsibleError
 from ansible.plugins.lookup import LookupBase
+from ansible.utils.display import Display
 from ansible.module_utils.urls import open_url
 import json
 
@@ -32,6 +33,8 @@ RETURN = """
         description: JSON response from query
 """
 
+display = Display()
+
 
 class LookupModule(LookupBase):
     def __init__(self, *args, **kwargs):
@@ -40,7 +43,9 @@ class LookupModule(LookupBase):
     def run(self, terms, variables, **kwargs):
         ret = []
         for term in terms:
+            display.debug("Airport lookup term: %s" % term)
             url = "http://127.0.0.1:8812/lookup?iata={0}".format(term)
+            display.vvvv("Airport GET %s" % url)
             try:
                 response = open_url(url)
             except Exception as e:
