@@ -15,7 +15,7 @@ all: airportsd docs
 airportsd: airportsd.c Makefile version.h config.mk
 	$(CC) $(CFLAGS) -o airportsd airportsd.c $(LDFLAGS)
 
-# Use dat2cdb.py to convert the CSV into input for a CDB file keyed on
+# Use our2cdb.py to convert the CSV into input for a CDB file keyed on
 # uppercase 3-letter IATA code (e.g. BCN for Barcelona). The payload
 # in the CDB is a JSON object
 
