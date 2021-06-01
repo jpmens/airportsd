@@ -1,7 +1,6 @@
 
 include config.mk
 
-OS = $(shell uname)
 CFLAGS=-Wall -Werror $(INC)
 LDFLAGS=-lmicrohttpd -lcdb $(LIBS)
 
@@ -41,7 +40,9 @@ install: airportsd # airports.cdb
 	chmod 755 $(DESTDIR)$(INSTALLDIR)/share/man/man8
 	install -m 644 airportsd.8 $(DESTDIR)$(INSTALLDIR)/share/man/man8/airportsd.8
 
-	[ "$(OS)" = "FreeBSD" ] && install -m 755 support/freebsd/airports /usr/local/etc/rc.d/airports
+	if test "$$(uname)" = "FreeBSD"; then \
+		install -m 755 support/freebsd/airports /usr/local/etc/rc.d/airports; \
+	fi
 
 docs: airportsd.8 README.txt
 
