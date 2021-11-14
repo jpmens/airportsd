@@ -9,7 +9,7 @@ airportsd [-v]
 
 # DESCRIPTION
 
-*airportsd* is an HTTP-accessible IATA airport code lookup daemon. We created this as a service students can use on lab machines for developing an Ansible lookup plugin during course.
+*airportsd* is an HTTP-accessible IATA airport code lookup daemon. We created this as a service students can use on lab machines for developing an Ansible lookup plugin during trainings.
 
 When running on a _tty_ the program will output brief debugging information on startup, and when it's queried.
 

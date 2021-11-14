@@ -77,10 +77,7 @@ REQUIREMENTS
 	      EOF
 
    rhel/centos
-	      yum install tinycdb tinycdb-devel
-
-	      Do *not* install libmicrohttpd from the repositories,
-	      as this is way to old.
+	      yum install tinycdb
 
    debian
 	      apt‐get install tinycdb
