@@ -49,7 +49,8 @@ class LookupModule(LookupBase):
             try:
                 response = open_url(url)
             except Exception as e:
-                raise AnsibleError("Received HTTP error for %s : %s" % (term, e))
+                raise AnsibleError("Received HTTP error for %s" % term)
+                return ret
 
             data = json.loads(response.read())
 
