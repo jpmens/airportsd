@@ -34,9 +34,15 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <cdb.h>
-#define MHD_PLATFORM_H
+// #define MHD_PLATFORM_H
 #include <microhttpd.h>
 #include "version.h"
+
+# if MHD_VERSION < 0x00097002
+#   define MH_RETVAL int
+# else
+#   define MH_RETVAL enum MHD_Result
+# endif
 
 struct MHD_Daemon *mhdaemon;
 struct cdb cdb;
@@ -124,7 +130,7 @@ static int get_lookup(struct MHD_Connection *connection)
 	return send_page(connection, "not found", 404);
 }
 
-enum MHD_Result handle_connection(void *cls, struct MHD_Connection *connection,
+MH_RETVAL handle_connection(void *cls, struct MHD_Connection *connection,
 	const char *url, const char *method, const char *version,
 	const char *upload_data, size_t *upload_data_size, void **con_cls)
 {
