@@ -30,4 +30,10 @@ ok: [localhost] => {
         "osm": "https://openstreetmap.org/?mlat=50.033333&mlon=8.570556&zoom=12"
     }
 }
+
+
+TASK [debug] ***********************************************************************************************
+fatal: [localhost]: FAILED! => {"msg": "The 'airport' lookup could not lookup IATA code 'no4'. HTTP Error 404: Not Found"}
+...ignoring
+
 ```

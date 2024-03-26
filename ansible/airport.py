@@ -1,10 +1,10 @@
-from ansible.errors import AnsibleError
 from ansible.plugins.lookup import LookupBase
 from ansible.utils.display import Display
 from ansible.module_utils.urls import open_url
+from ansible.errors import AnsibleError, AnsibleOptionsError, AnsibleLookupError
 import json
 
-# Copyright (C) 2020 Jan-Piet Mens <jp@mens.de>
+# Copyright (C) 2020-2024 Jan-Piet Mens <jp@mens.de>
 
 DOCUMENTATION = """
     lookup: airport
@@ -14,7 +14,8 @@ DOCUMENTATION = """
     description:
         - Queries the airportsd server for a case-insensitive, 3-letter
           IATA code and returns the JSON, enriched with an element "osm"
-          containing a URL to OpenStreetMap at that location.
+          containing a URL to OpenStreetMap at that location. Raises an
+          AnsibleLookupError if the code cannot be queried.
     options:
         _terms:
             description:
@@ -49,8 +50,8 @@ class LookupModule(LookupBase):
             try:
                 response = open_url(url)
             except Exception as e:
-                raise AnsibleError("Received HTTP error for %s" % term)
-                return ret
+                raise AnsibleLookupError("The 'airport' lookup could not lookup IATA code '%s'" % term, orig_exc=e)
+
 
             data = json.loads(response.read())
 
