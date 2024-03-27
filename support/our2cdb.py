@@ -5,6 +5,10 @@
 
 import csv
 import json
+import sys
+
+sys.path.append("support/emoji-flags")
+from emojiflags.lookup import lookup
 
 with open('airports.csv', 'r') as f:
     reader = csv.reader(f)
@@ -25,6 +29,7 @@ with open('airports.csv', 'r') as f:
                     "lon"    : lon,
                     "name"   : name,
                     "type"   : atype,
+                    "emoji"  : lookup(cc),
                 }
                 print("{iata} {data}".format(iata=iata.upper(), data=json.dumps(data)))
         
