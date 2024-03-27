@@ -47,7 +47,7 @@ install: airportsd # airports.cdb
 docs: airportsd.8 README.txt
 
 airportsd.8: airportsd.pandoc Makefile
-	pandoc -s -f markdown -o $@ $<
+	pandoc -s -f markdown -t man -o $@ $<
 
 README.txt: airportsd.8
 	nroff -man airportsd.8 | col -b > README.txt
