@@ -118,8 +118,11 @@ static int get_lookup(struct MHD_Connection *connection)
 
 	if (cdb_find(&cdb, key, keylen) > 0) {
 		datalen = cdb_datalen(&cdb);
-		datalen = (datalen >= sizeof(data)) ? sizeof(data) : datalen;	/* cap */
+
+		/* cap length (and possibly break JSON content) */
+		datalen = (datalen >= sizeof(data)) ? sizeof(data) - 1 : datalen;
 		if (cdb_read(&cdb, data, datalen, cdb_datapos(&cdb)) == 0) {
+			data[datalen++] = '\n';
 			data[datalen] = 0;
 
 			free(key);
