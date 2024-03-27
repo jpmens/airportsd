@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-# Copyright (C) 2020 Jan-Piet Mens <jp@mens.de>
+# Copyright (C) 2020-2024 Jan-Piet Mens <jp@mens.de>
 # q.py: simple query utility for airportd
 
 import sys
