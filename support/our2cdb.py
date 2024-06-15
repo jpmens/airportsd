@@ -10,7 +10,7 @@ import sys
 sys.path.append("support/emoji-flags")
 from emojiflags.lookup import lookup
 
-with open('airports.csv', 'r') as f:
+with open('airports.csv', 'r', encoding="utf-8") as f:
     reader = csv.reader(f)
     for row in reader:
         (id, ident, atype, name, lat, lon, alt, continent, cc, region, city,
