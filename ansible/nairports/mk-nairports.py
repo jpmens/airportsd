@@ -14,7 +14,7 @@ with open('../../airports.csv', newline='', encoding='utf-8') as csvfile:
     n = 0
     for row in airreader:
         # if "iata_code" in row and len(row["iata_code"]) > 0:
-        if row["type"] == "large_airport":
+        if row["type"] == "large_airport" and "Spam" not in row["name"]:
             data = {
                 "cc"    : row["iso_country"],
                 "lat"   : row["latitude_deg"],

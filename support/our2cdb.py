@@ -16,6 +16,9 @@ with open('airports.csv', 'r', encoding="utf-8") as f:
         (id, ident, atype, name, lat, lon, alt, continent, cc, region, city,
            scheduled, gps_code, iata, localcode, home, wikipedia, keywords) = row
 
+        if "Spam" in name:
+            continue
+
         # atype == airport type
 
         if atype in [ 'closed', 'small_airport', 'medium_airport', 'large_airport' ]:

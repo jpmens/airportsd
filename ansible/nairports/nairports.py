@@ -637,13 +637,6 @@ airports = [
   "name": "Am\u00edlcar Cabral International Airport"
  },
  {
-  "cc": "VN",
-  "lat": "0.0196",
-  "lon": "0.0178",
-  "iata": "XHG",
-  "name": "(Spam)C\u00e1c C\u1ed5ng Game Casino Tr\u1ef1c Tuy\u1ebfn Uy T\u00edn Nh\u1ea5t 2024"
- },
- {
   "cc": "ET",
   "lat": "8.97789",
   "lon": "38.799301",
