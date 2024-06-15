@@ -24,6 +24,7 @@ ok: [localhost] => {
     "fra": {
         "cc": "DE",
         "city": "Frankfurt am Main",
+        "emoji": "🇩🇪",
         "iata": "FRA",
         "lat": "50.033333",
         "lon": "8.570556",
