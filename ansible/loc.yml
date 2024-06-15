@@ -17,3 +17,6 @@
   - debug:
         msg: "The airport code {{ nop }} is {{ lookup('airport', nop) }}"
     ignore_errors: true
+
+  - debug:
+        msg: "ESK is {{ lookup('airport', 'esk').name }}"

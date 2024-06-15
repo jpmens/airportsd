@@ -3,6 +3,7 @@
 
 ```console
 $ export ANSIBLE_LOOKUP_PLUGINS=/path/to/this/directory/
+$ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES  # macOS
 ```
 
 ```
@@ -35,5 +36,11 @@ ok: [localhost] => {
 TASK [debug] ***********************************************************************************************
 fatal: [localhost]: FAILED! => {"msg": "The 'airport' lookup could not lookup IATA code 'no4'. HTTP Error 404: Not Found"}
 ...ignoring
+
+TASK [debug] *********************************************************************************
+Lookup: [ESK]
+ok: [localhost] => {
+    "msg": "ESK is Eskişehir Air Base"
+}
 
 ```
