@@ -6,6 +6,7 @@
 import csv
 import json
 import sys
+import datetime
 
 arr = []
 
@@ -29,8 +30,8 @@ print("""#!/usr/bin/env python3
 
 import json
 import random
-
 """)
+print("# assembled by mk-nairports.py on {0}\n".format(datetime.date.today().isoformat()))
 
 print("airports =", json.dumps(arr, indent=1))
 

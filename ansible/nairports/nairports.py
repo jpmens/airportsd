@@ -4,6 +4,7 @@
 import json
 import random
 
+# assembled by mk-nairports.py on 2024-08-05
 
 airports = [
  {
