@@ -21,13 +21,6 @@ airports = [
   "name": "Port Moresby Jacksons International Airport"
  },
  {
-  "cc": "BB",
-  "lat": "0.03",
-  "lon": "-0.07",
-  "iata": "",
-  "name": "Delete spam"
- },
- {
   "cc": "IS",
   "lat": "63.985001",
   "lon": "-22.6056",
@@ -2833,13 +2826,6 @@ airports = [
   "lon": "113.592003",
   "iata": "MFM",
   "name": "Macau International Airport"
- },
- {
-  "cc": "VN",
-  "lat": "0.01",
-  "lon": "0.01",
-  "iata": "",
-  "name": "(SPAM)fun88family"
  },
  {
   "cc": "NP",
